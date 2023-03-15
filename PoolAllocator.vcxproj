@@ -128,10 +128,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="dynamicAllocator.h" />
+    <ClInclude Include="dynamicAllocator.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="dynamicAllocator.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

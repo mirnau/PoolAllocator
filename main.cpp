@@ -4,14 +4,14 @@
 #include <chrono>
 
 // TODO: Implement and add this file
-#include "DynamicAllocator.h"
+#include "DynamicAllocator.hpp"
 
 #define DefaultTests
 
 
-//#define Benchmark
-//#define TestDynamicAllocator
-//#define TestNewDelete
+#define Benchmark
+#define TestDynamicAllocator
+#define TestNewDelete
 
 int main(int argc, const char* argv[])
 {
@@ -31,6 +31,7 @@ int main(int argc, const char* argv[])
         }
     };
 
+
     // Pool with largest possible size w.r.t. index type
     // Pool pool {(IndexType)-1 - 1};
 
@@ -45,8 +46,14 @@ int main(int argc, const char* argv[])
 
     pool.dump_pool();
 
+    auto nbr = pool.count_free(); //Mine
+    assert(nbr == 4); //Mine
+
     std::cout << "Creating 2 objects..." << std::endl;
     auto p1 = pool.create<IAm2byte>((int16_t)1);
+
+    pool.dump_pool(); //Mine
+
     auto p2 = pool.create<IAm4byte>((int32_t)2);
 
     pool.dump_pool();
@@ -76,6 +83,8 @@ int main(int argc, const char* argv[])
 
     pool.dump_pool();
     assert(pool.count_free() == capacity);
+    /* DEBUG HEAD
+    *///End of incremental debug
 #endif
 
 #ifdef Benchmark
